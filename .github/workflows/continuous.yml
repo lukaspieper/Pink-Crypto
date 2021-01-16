@@ -16,5 +16,5 @@ jobs:
     - name: Upload AAR
       uses: actions/upload-artifact@v2
       with:
-        name: App
-        path: ${{ github.workspace }}/lib/build/outputs/
+        name: Library
+        path: ${{ github.workspace }}/lib/build/outputs/aar/lib-debug.aar
