@@ -17,4 +17,4 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: App
-        path: ${{ github.workspace }}/lib/build/outputs/aar/lib-debug.apk
+        path: ${{ github.workspace }}/lib/build/outputs/
