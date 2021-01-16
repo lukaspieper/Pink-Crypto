@@ -11,7 +11,7 @@ android {
         minSdkVersion 20
         targetSdkVersion 30
         versionCode 1
-        versionName "1.0"
+        versionName "0.1"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -66,6 +66,19 @@ afterEvaluate {
                 groupId "de.lukaspieper.crypto.pink"
                 artifactId "pink-android"
                 version android.defaultConfig.versionName
+
+                pom {
+                    name = 'Pink Crypto'
+                    url = 'https://github.com/lukaspieper/pink-crypto'
+                    developers {
+                        developer {
+                            name = 'Lukas Pieper'
+                        }
+                    }
+                    scm {
+                        url = 'https://github.com/lukaspieper/pink-crypto'
+                    }
+                }
             }
         }
     }
