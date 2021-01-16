@@ -1,0 +1,38 @@
+buildscript {
+    ext {
+        kotlin_version = "1.4.21"
+        detekt_version = "1.15.0"
+        assertk_version = "0.23"
+    }
+    repositories {
+        google()
+        jcenter()
+    }
+    dependencies {
+        classpath "com.android.tools.build:gradle:4.1.1"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    }
+}
+
+plugins {
+    id "io.gitlab.arturbosch.detekt" version "$detekt_version"
+}
+
+dependencies {
+    detektPlugins("io.gitlab.arturbosch.detekt:detekt-formatting:$detekt_version")
+}
+
+allprojects {
+    repositories {
+        google()
+        jcenter()
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
+
+task detektAll(type: io.gitlab.arturbosch.detekt.Detekt) {
+    setSource(files(projectDir))
+}
