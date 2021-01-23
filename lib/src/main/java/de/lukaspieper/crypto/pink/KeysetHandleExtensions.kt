@@ -7,7 +7,7 @@ import de.lukaspieper.crypto.pink.argon2.Argon2id
 import java.io.ByteArrayOutputStream
 
 /**
- * TODO
+ * Encrypts the [KeysetHandle] with the given [password] and returns a [PasswordEncryptedKeyset].
  */
 public fun KeysetHandle.encryptWithPassword(password: ByteArray): PasswordEncryptedKeyset {
     val hash = Argon2id.hashPassword(password)

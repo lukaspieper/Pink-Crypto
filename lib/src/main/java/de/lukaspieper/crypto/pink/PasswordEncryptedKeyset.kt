@@ -7,7 +7,7 @@ import com.google.crypto.tink.subtle.Base64
 import de.lukaspieper.crypto.pink.argon2.Argon2id
 
 /**
- * TODO
+ * Keyset that is encrypted based on a password trough [KeysetHandle.encryptWithPassword].
  */
 public class PasswordEncryptedKeyset internal constructor(
     private val encryptedKeyData: ByteArray,
@@ -17,7 +17,7 @@ public class PasswordEncryptedKeyset internal constructor(
         private const val base64Flags = Base64.NO_PADDING or Base64.NO_WRAP
 
         /**
-         * TODO
+         * Imports a [PasswordEncryptedKeyset] that was exported as [String] before.
          */
         public fun importFromString(input: String): PasswordEncryptedKeyset {
             val (encodedEncryptedKeyData, encodedConfigAndSalt) = input.splitAtIndexOf('$')
@@ -28,14 +28,15 @@ public class PasswordEncryptedKeyset internal constructor(
     }
 
     /**
-     * TODO
+     * Exports the [PasswordEncryptedKeyset] to a [String] that contains the encrypted keyset.
      */
     public fun exportAsString(): String {
         return Base64.encodeToString(encryptedKeyData, base64Flags) + argon2ConfigAndSalt
     }
 
     /**
-     * TODO
+     * Decrypts the [PasswordEncryptedKeyset] with the given [password] and returns a [KeysetHandle]
+     * on success.
      */
     public fun decryptWithPassword(password: ByteArray): KeysetHandle {
         val hash = Argon2id.hashPassword(password, argon2ConfigAndSalt)
