@@ -60,8 +60,8 @@ afterEvaluate {
         }
 
         publications {
-            debug(MavenPublication) {
-                from components.debug
+            release(MavenPublication) {
+                from components.release
 
                 groupId "de.lukaspieper.crypto.pink"
                 artifactId "pink-android"

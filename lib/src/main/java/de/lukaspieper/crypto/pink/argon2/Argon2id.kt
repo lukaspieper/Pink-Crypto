@@ -2,7 +2,7 @@ package de.lukaspieper.crypto.pink.argon2
 
 import com.google.crypto.tink.subtle.Base64
 import com.google.crypto.tink.subtle.Random
-import org.signal.argon2.*
+import org.signal.argon2.Argon2Exception
 
 internal object Argon2id {
     const val keySize = 32
