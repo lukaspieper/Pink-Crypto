@@ -22,6 +22,6 @@ private fun getSignalArgon2Version(config: Argon2Config): Version {
     return when (config.version) {
         0x10 -> Version.V10
         0x13 -> Version.V13
-        else -> throw IllegalStateException()
+        else -> throw IllegalStateException("Invalid Argon2 version")
     }
 }
