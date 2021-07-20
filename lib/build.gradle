@@ -40,7 +40,7 @@ dependencies {
 
     // Tests
     androidTestImplementation("androidx.test.ext:junit:1.1.3")
-    androidTestImplementation("androidx.test:runner:1.3.0")
+    androidTestImplementation("androidx.test:runner:1.4.0")
     androidTestImplementation("androidx.test:rules:1.3.0")
     androidTestImplementation("com.willowtreeapps.assertk:assertk-jvm:$assertk_version")
     androidTestImplementation("org.json:json:20210307")
