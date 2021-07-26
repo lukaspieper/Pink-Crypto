@@ -36,7 +36,7 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 
     implementation("org.signal:argon2:13.1@aar")
-    implementation("com.google.crypto.tink:tink-android:1.6.0")
+    implementation("com.google.crypto.tink:tink-android:1.6.1")
 
     // Tests
     androidTestImplementation("androidx.test.ext:junit:1.1.3")
