@@ -1,7 +1,7 @@
 buildscript {
     ext {
         kotlin_version = "1.5.10"
-        detekt_version = "1.17.1"
+        detekt_version = "1.18.0"
         assertk_version = "0.24"
     }
     repositories {
