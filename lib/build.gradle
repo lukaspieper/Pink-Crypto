@@ -43,7 +43,7 @@ dependencies {
     androidTestImplementation("androidx.test:runner:1.4.0")
     androidTestImplementation("androidx.test:rules:1.4.0")
     androidTestImplementation("com.willowtreeapps.assertk:assertk-jvm:$assertk_version")
-    androidTestImplementation("org.json:json:20211205")
+    androidTestImplementation("org.json:json:20220320")
 }
 
 afterEvaluate {
