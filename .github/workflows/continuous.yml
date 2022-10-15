@@ -3,9 +3,18 @@ name: continuous
 on: [push, pull_request]
 
 jobs:
+  validate:
+    name: Validate Gradle Wrapper
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - uses: gradle/wrapper-validation-action@v1
+
   build:
     name: Build, lint and run tests
     runs-on: ubuntu-latest
+    needs: validate
 
     steps:
     - uses: actions/checkout@v3
@@ -24,15 +33,15 @@ jobs:
 
     - name: Run Detekt Linter
       run: ./gradlew detekt
-      if: always()
+      if: success() || failure()
 
     - name: Run Android Linter
       run: ./gradlew lint
-      if: always()
+      if: success() || failure()
 
     - name: Build Debug AAR with Gradle
       run: ./gradlew assembleDebug
-      if: always()
+      if: success() || failure()
 
     - name: Upload AAR
       uses: actions/upload-artifact@v3
