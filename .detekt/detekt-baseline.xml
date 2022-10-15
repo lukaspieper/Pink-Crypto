@@ -1,0 +1,7 @@
+<?xml version="1.0" ?>
+<SmellBaseline>
+  <ManuallySuppressedIssues></ManuallySuppressedIssues>
+  <CurrentIssues>
+    <ID>UseCheckOrError:Argon2ConfigExtensions.kt$throw IllegalStateException("Invalid Argon2 version")</ID>
+  </CurrentIssues>
+</SmellBaseline>
