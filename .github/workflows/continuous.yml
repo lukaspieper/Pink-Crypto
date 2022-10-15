@@ -23,7 +23,7 @@ jobs:
       uses: gradle/gradle-build-action@v2
 
     - name: Run Detekt Linter
-      run: ./gradlew detektAll
+      run: ./gradlew detekt
       if: always()
 
     - name: Run Android Linter
