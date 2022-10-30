@@ -8,7 +8,7 @@ package de.lukaspieper.crypto.pink.argon2
 internal interface Argon2Config {
     val type: String
     val version: Int
-    val memoryCostInKiBit: Int
+    val memoryCostInKibibyte: Int
     val iterations: Int
     val parallelism: Int
 
@@ -30,7 +30,7 @@ internal interface Argon2Config {
     private class Custom(
         override val type: String,
         override val version: Int,
-        override val memoryCostInKiBit: Int,
+        override val memoryCostInKibibyte: Int,
         override val iterations: Int,
         override val parallelism: Int
     ) : Argon2Config
@@ -38,7 +38,7 @@ internal interface Argon2Config {
     object Default : Argon2Config {
         override val type: String = "argon2id"
         override val version: Int = 0x13
-        override val memoryCostInKiBit: Int = 65536
+        override val memoryCostInKibibyte: Int = 65536
         override val iterations: Int = 3
         override val parallelism: Int = 1
     }

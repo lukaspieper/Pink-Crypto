@@ -45,7 +45,7 @@ public class PasswordEncryptedKeyset internal constructor(
      */
     public fun decryptWithPassword(password: ByteArray): KeysetHandle {
         val hash = Argon2id.hashPassword(password, argon2ConfigAndSalt)
-        val passwordBasedKey = AesGcmJce(hash.raw)
+        val passwordBasedKey = AesGcmJce(hash.toRaw())
 
         val keysetReader = BinaryKeysetReader.withBytes(encryptedKeyData)
         return KeysetHandle.read(keysetReader, passwordBasedKey)

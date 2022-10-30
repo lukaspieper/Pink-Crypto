@@ -45,7 +45,7 @@ android {
 }
 
 dependencies {
-    implementation("org.signal:argon2:13.1@aar")
+    implementation("androidx.annotation:annotation:1.5.0")
     implementation("com.google.crypto.tink:tink-android:1.7.0")
 
     // Tests
@@ -54,6 +54,14 @@ dependencies {
     androidTestImplementation("androidx.test:rules:1.4.0")
     androidTestImplementation("com.willowtreeapps.assertk:assertk-jvm:0.25")
     androidTestImplementation("org.json:json:20220924")
+}
+
+preBuild.doFirst {
+    copy {
+        from "../phc-winner-argon2/include"
+        from "../phc-winner-argon2/src"
+        into "src/main/cpp/argon2"
+    }
 }
 
 afterEvaluate {

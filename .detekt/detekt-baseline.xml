@@ -2,6 +2,11 @@
 <SmellBaseline>
   <ManuallySuppressedIssues></ManuallySuppressedIssues>
   <CurrentIssues>
-    <ID>UseCheckOrError:Argon2ConfigExtensions.kt$throw IllegalStateException("Invalid Argon2 version")</ID>
+    <ID>FunctionParameterNaming:Argon2id.kt$Argon2id$encoded_destination: ByteBufferTarget</ID>
+    <ID>FunctionParameterNaming:Argon2id.kt$Argon2id$hash_destination: ByteBufferTarget</ID>
+    <ID>FunctionParameterNaming:Argon2id.kt$Argon2id$hash_length: Int</ID>
+    <ID>FunctionParameterNaming:Argon2id.kt$Argon2id$m_cost: Int</ID>
+    <ID>FunctionParameterNaming:Argon2id.kt$Argon2id$t_cost: Int</ID>
+    <ID>LongParameterList:Argon2id.kt$Argon2id$( mode: Int, version: Int, t_cost: Int, m_cost: Int, parallelism: Int, password: ByteBuffer, salt: ByteBuffer, hash_length: Int, hash_destination: ByteBufferTarget, encoded_destination: ByteBufferTarget )</ID>
   </CurrentIssues>
 </SmellBaseline>

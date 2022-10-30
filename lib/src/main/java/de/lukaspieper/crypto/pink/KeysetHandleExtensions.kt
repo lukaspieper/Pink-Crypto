@@ -16,12 +16,12 @@ import java.io.ByteArrayOutputStream
  */
 public fun KeysetHandle.encryptWithPassword(password: ByteArray): PasswordEncryptedKeyset {
     val hash = Argon2id.hashPassword(password)
-    val passwordBasedKey = AesGcmJce(hash.raw)
+    val passwordBasedKey = AesGcmJce(hash.toRaw())
 
     val outputStream = ByteArrayOutputStream()
     val binaryWriter = BinaryKeysetWriter.withOutputStream(outputStream)
     write(binaryWriter, passwordBasedKey)
     val keyData = outputStream.toByteArray()
 
-    return PasswordEncryptedKeyset(keyData, hash.encodedConfigAndSalt)
+    return PasswordEncryptedKeyset(keyData, hash.toEncodedConfigAndSalt())
 }
