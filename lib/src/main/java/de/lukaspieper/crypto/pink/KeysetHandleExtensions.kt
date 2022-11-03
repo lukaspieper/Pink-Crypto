@@ -8,12 +8,15 @@ package de.lukaspieper.crypto.pink
 import com.google.crypto.tink.BinaryKeysetWriter
 import com.google.crypto.tink.KeysetHandle
 import com.google.crypto.tink.subtle.AesGcmJce
+import de.lukaspieper.crypto.pink.argon2.Argon2Exception
 import de.lukaspieper.crypto.pink.argon2.Argon2id
 import java.io.ByteArrayOutputStream
+import java.security.GeneralSecurityException
 
 /**
  * Encrypts the [KeysetHandle] with the given [password] and returns a [PasswordEncryptedKeyset].
  */
+@Throws(Argon2Exception::class, GeneralSecurityException::class)
 public fun KeysetHandle.encryptWithPassword(password: ByteArray): PasswordEncryptedKeyset {
     val hash = Argon2id.hashPassword(password)
     val passwordBasedKey = AesGcmJce(hash.toRaw())

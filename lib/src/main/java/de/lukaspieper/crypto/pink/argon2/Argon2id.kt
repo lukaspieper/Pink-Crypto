@@ -13,29 +13,12 @@ internal object Argon2id {
     const val keySize = 32
     private const val saltSize = 16
 
-    private val defaultArgon2Config = Argon2Config.Default
-
     init {
         System.loadLibrary("argon2id")
     }
 
-    @Throws(Exception::class)
-    internal fun hashPassword(password: ByteArray): Argon2Hash {
-        val salt = generateSalt()
-        val passwordBuffer = ByteBuffer.allocateDirect(password.size).put(password)
-        val saltBuffer = ByteBuffer.allocateDirect(salt.size).put(salt)
-
-        try {
-            return hash(passwordBuffer, saltBuffer, defaultArgon2Config)
-        } finally {
-            passwordBuffer.wipeDirectBuffer()
-            saltBuffer.wipeDirectBuffer()
-        }
-    }
-
-    private fun generateSalt(): ByteArray = Random.randBytes(saltSize)
-
-    fun hashPassword(password: ByteArray, encodedConfigAndSalt: String): Argon2Hash {
+    @Throws(Argon2Exception::class)
+    internal fun hashPassword(password: ByteArray, encodedConfigAndSalt: String): Argon2Hash {
         val saltBeginningIndex = encodedConfigAndSalt.lastIndexOf('$') + 1
         val encodedSalt = encodedConfigAndSalt.substring(saltBeginningIndex)
         val salt = Base64.decode(encodedSalt)
@@ -43,42 +26,54 @@ internal object Argon2id {
         val encodedConfig = encodedConfigAndSalt.take(saltBeginningIndex)
         val argon2Config = Argon2Config.fromEncodedConfig(encodedConfig)
 
+        return hash(password, salt, argon2Config)
+    }
+
+    @Throws(Argon2Exception::class)
+    internal fun hashPassword(password: ByteArray): Argon2Hash {
+        val salt = generateSalt()
+        return hash(password, salt, Argon2Config.Default)
+    }
+
+    private fun generateSalt(): ByteArray {
+        return Random.randBytes(saltSize)
+    }
+
+    @Throws(Argon2Exception::class)
+    private fun hash(password: ByteArray, salt: ByteArray, config: Argon2Config): Argon2Hash {
         val passwordBuffer = ByteBuffer.allocateDirect(password.size).put(password)
         val saltBuffer = ByteBuffer.allocateDirect(salt.size).put(salt)
 
         try {
-            return hash(passwordBuffer, saltBuffer, argon2Config)
+            val hashTarget = ByteBufferTarget()
+            val encodedTarget = ByteBufferTarget()
+
+            val returnCode = nativeArgon2Hash(
+                mode = 2, // Argon2id
+                version = config.version,
+                t_cost = config.iterations,
+                m_cost = config.memoryCostInKibibyte,
+                parallelism = config.parallelism,
+                password = passwordBuffer,
+                salt = saltBuffer,
+                hash_length = keySize,
+                hash_destination = hashTarget,
+                encoded_destination = encodedTarget
+            )
+
+            if (returnCode != 0 || !hashTarget.hasByteBufferSet()) {
+                throw Argon2Exception()
+            }
+
+            return Argon2Hash(
+                rawHash = hashTarget.getByteBuffer(),
+                // ignore trailing \0 byte
+                encodedOutput = encodedTarget.dropLastN(1).getByteBuffer()
+            )
         } finally {
             passwordBuffer.wipeDirectBuffer()
             saltBuffer.wipeDirectBuffer()
         }
-    }
-
-    private fun hash(password: ByteBuffer, salt: ByteBuffer, config: Argon2Config): Argon2Hash {
-        val hashTarget = ByteBufferTarget()
-        val encodedTarget = ByteBufferTarget()
-
-        val returnCode = nativeArgon2Hash(
-            mode = 2, // Argon2id
-            version = config.version,
-            t_cost = config.iterations,
-            m_cost = config.memoryCostInKibibyte,
-            parallelism = config.parallelism,
-            password = password,
-            salt = salt,
-            hash_length = keySize,
-            hash_destination = hashTarget,
-            encoded_destination = encodedTarget
-        )
-
-        if (returnCode != 0 || !hashTarget.hasByteBufferSet()) {
-            // TODO: Throw Exception
-        }
-
-        return Argon2Hash(
-            rawHash = hashTarget.getByteBuffer(),
-            encodedOutput = encodedTarget.dropLastN(1).getByteBuffer() // ignore trailing \0 byte
-        )
     }
 
     private external fun nativeArgon2Hash(

@@ -7,7 +7,7 @@ package de.lukaspieper.crypto.pink.argon2
 
 import java.nio.ByteBuffer
 
-internal class Argon2Hash(val rawHash: ByteBuffer, val encodedOutput: ByteBuffer) {
+internal class Argon2Hash(private val rawHash: ByteBuffer, private val encodedOutput: ByteBuffer) {
 
     fun toRaw(): ByteArray {
         return rawHash.toByteArray()

@@ -40,7 +40,7 @@ internal class ByteBufferTarget {
      * @return This object to allow chaining of operations. The ByteBufferTarget is not copied.
      */
     fun dropLastN(dropLastN: Int = 0): ByteBufferTarget {
-        checkArgument(dropLastN >= 0, "dropLastN must not be negative")
+        require(dropLastN >= 0) { "dropLastN must not be negative" }
 
         val oldByteBuffer = byteBuffer!!
         val newLength = oldByteBuffer.capacity() - dropLastN
