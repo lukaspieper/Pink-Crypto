@@ -1,25 +1,37 @@
 plugins {
     id 'com.android.library'
-    id 'kotlin-android'
+    id 'org.jetbrains.kotlin.android'
     id 'maven-publish'
 }
 
 android {
-    compileSdkVersion 31
+    namespace "de.lukaspieper.crypto.pink"
+    compileSdk 33
 
     defaultConfig {
-        minSdkVersion 20
-        targetSdkVersion 31
-        versionCode 2
-        versionName "0.2"
+        minSdk 20
+        targetSdk 31
+        versionCode 3
+        versionName "0.3"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        externalNativeBuild {
+            cmake {
+                arguments '-DANDROID_TOOLCHAIN=clang'
+            }
+        }
     }
 
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    externalNativeBuild {
+        cmake {
+            path "src/main/cpp/CMakeLists.txt"
+            version "3.22.1"
         }
     }
     compileOptions {
@@ -33,17 +45,23 @@ android {
 }
 
 dependencies {
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-
-    implementation("org.signal:argon2:13.1@aar")
+    implementation("androidx.annotation:annotation:1.5.0")
     implementation("com.google.crypto.tink:tink-android:1.7.0")
 
     // Tests
     androidTestImplementation("androidx.test.ext:junit:1.1.3")
     androidTestImplementation("androidx.test:runner:1.4.0")
     androidTestImplementation("androidx.test:rules:1.4.0")
-    androidTestImplementation("com.willowtreeapps.assertk:assertk-jvm:$assertk_version")
+    androidTestImplementation("com.willowtreeapps.assertk:assertk-jvm:0.25")
     androidTestImplementation("org.json:json:20220924")
+}
+
+preBuild.doFirst {
+    copy {
+        from "../phc-winner-argon2/include"
+        from "../phc-winner-argon2/src"
+        into "src/main/cpp/argon2"
+    }
 }
 
 afterEvaluate {
@@ -70,6 +88,12 @@ afterEvaluate {
                 pom {
                     name = 'Pink Crypto'
                     url = 'https://github.com/lukaspieper/pink-crypto'
+                    licenses {
+                        license {
+                            name = 'MIT License'
+                            url = 'https://github.com/lukaspieper/Pink-Crypto/blob/develop/LICENSE'
+                        }
+                    }
                     developers {
                         developer {
                             name = 'Lukas Pieper'

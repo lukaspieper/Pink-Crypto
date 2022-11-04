@@ -20,7 +20,7 @@ public class Argon2Tests {
         val hash = Argon2id.hashPassword(anyPasswordBytes)
 
         // Assert
-        assertThat(hash.encodedConfigAndSalt).startsWith("\$argon2id\$v=19\$m=65536,t=3,p=1")
+        assertThat(hash.toEncodedConfigAndSalt()).startsWith("\$argon2id\$v=19\$m=65536,t=3,p=1")
     }
 
     @Test
@@ -29,7 +29,7 @@ public class Argon2Tests {
         val hash = Argon2id.hashPassword(anyPasswordBytes)
 
         // Assert
-        assertThat(hash.raw.size).isEqualTo(Argon2id.keySize)
+        assertThat(hash.toRaw().size).isEqualTo(Argon2id.keySize)
     }
 
     // This test is only to ensure that the same hash is not returned for each call.

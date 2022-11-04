@@ -10,6 +10,7 @@ import com.google.crypto.tink.KeysetHandle
 import com.google.crypto.tink.subtle.AesGcmJce
 import com.google.crypto.tink.subtle.Base64
 import de.lukaspieper.crypto.pink.argon2.Argon2id
+import java.security.GeneralSecurityException
 
 /**
  * Keyset that is encrypted based on a password trough [KeysetHandle.encryptWithPassword].
@@ -24,7 +25,10 @@ public class PasswordEncryptedKeyset internal constructor(
         /**
          * Imports a [PasswordEncryptedKeyset] that was exported as [String] before.
          */
+        @Throws(IllegalArgumentException::class)
         public fun importFromString(input: String): PasswordEncryptedKeyset {
+            require(input.contains('$'))
+
             val (encodedEncryptedKeyData, encodedConfigAndSalt) = input.splitAtIndexOf('$')
             val encryptedKeyData = Base64.decode(encodedEncryptedKeyData, base64Flags)
 
@@ -43,9 +47,10 @@ public class PasswordEncryptedKeyset internal constructor(
      * Decrypts the [PasswordEncryptedKeyset] with the given [password] and returns a [KeysetHandle]
      * on success.
      */
+    @Throws(GeneralSecurityException::class)
     public fun decryptWithPassword(password: ByteArray): KeysetHandle {
         val hash = Argon2id.hashPassword(password, argon2ConfigAndSalt)
-        val passwordBasedKey = AesGcmJce(hash.raw)
+        val passwordBasedKey = AesGcmJce(hash.toRaw())
 
         val keysetReader = BinaryKeysetReader.withBytes(encryptedKeyData)
         return KeysetHandle.read(keysetReader, passwordBasedKey)

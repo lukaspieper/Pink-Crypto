@@ -1,20 +1,28 @@
 # Pink-Crypto
 
-Pink stands for Password-[Tink](https://github.com/google/tink). It is a Android library that extends the
-popular crypto library build by Google to support password based encryption and decryption. Currently it
-uses [Signal's Argon2 library](https://github.com/signalapp/Argon2) to derive a key from the password.
+The name 'Pink' stands for Password-[Tink](https://github.com/google/tink). It is a Android library
+that extends the popular crypto library build by Google engineers to support password based
+encryption and decryption. It uses the
+[official Argon2 source](https://github.com/P-H-C/phc-winner-argon2) with JNI to derive a key from
+the password.
 
-> **_NOTE:_**  I am not a cryptography expert and this library is in an early stage of development.
+This library was created for and is an elementary part of my file encryption app Truvark 
+([Play Store](https://play.google.com/store/apps/details?id=de.lukaspieper.truvark)).
+
+> **_NOTE:_**  I am NOT a cryptography expert. The Argon2 implementation is using code from
+> [Argon2Kt](https://github.com/lambdapioneer/argon2kt) and the interaction with Tink is based on
+> [this issue](https://github.com/google/tink/issues/347) from their repository.
 
 ## Usage
 
-Example for creating a new `KeysetHandle`, encrypting it with a password and finally exporting the encrypted
-Keyset to store it.
+Example for creating a new `KeysetHandle`, encrypting it with a password and finally exporting the
+encrypted Keyset to store it.
 
 ```kotlin
 // Generate a new KeysetHandle as you know it from Tink
 StreamingAeadConfig.register()
-val keysetHandle = KeysetHandle.generateNew(AesGcmHkdfStreamingKeyManager.aes256GcmHkdf4KBTemplate())
+val aesKeyTemplate = KeyTemplates.get("AES256_GCM_HKDF_4KB")
+val keysetHandle = KeysetHandle.generateNew(aesKeyTemplate)
 
 // Encrypt it with a password
 val passwordBytes = TODO("Password as ByteArray")
@@ -24,7 +32,8 @@ val encryptedKeyset = keysetHandle.encryptWithPassword(passwordBytes)
 val encryptedKeysetString = encryptedKeyset.exportAsString()
 ```
 
-Example for importing an encrypted Keyset and decrypting it with the password to obtain a `KeysetHandle`.
+Example for importing an encrypted Keyset and decrypting it with the password to obtain a 
+`KeysetHandle`.
 
 ```kotlin
 // Register Tink if not done earlier. Get the encryptedKeysetString and password

@@ -1,0 +1,3 @@
+# Exclude Argon2 source because it is copied during build from the submodule
+*.c
+*.h

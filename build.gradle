@@ -1,31 +1,17 @@
 buildscript {
     ext {
-        kotlin_version = "1.7.20"
         detekt_version = "1.21.0"
-        assertk_version = "0.25"
-    }
-    repositories {
-        google()
-    }
-    dependencies {
-        classpath "com.android.tools.build:gradle:7.0.4"
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
     }
 }
 
 plugins {
+    id 'com.android.library' version '7.3.1' apply false
+    id 'org.jetbrains.kotlin.android' version '1.7.20' apply false
     id "io.gitlab.arturbosch.detekt" version "$detekt_version"
 }
 
 dependencies {
     detektPlugins("io.gitlab.arturbosch.detekt:detekt-formatting:$detekt_version")
-}
-
-allprojects {
-    repositories {
-        google()
-        mavenCentral()
-    }
 }
 
 detekt {

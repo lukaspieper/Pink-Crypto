@@ -5,12 +5,18 @@
 
 package de.lukaspieper.crypto.pink.argon2
 
-import org.signal.argon2.Argon2
+import java.nio.ByteBuffer
 
-internal class Argon2Hash(argon2Result: Argon2.Result) {
+internal class Argon2Hash(private val rawHash: ByteBuffer, private val encodedOutput: ByteBuffer) {
 
-    val raw: ByteArray = argon2Result.hash
-    val encodedConfigAndSalt: String = removeHashFromEncoded(argon2Result.encoded)
+    fun toRaw(): ByteArray {
+        return rawHash.toByteArray()
+    }
+
+    fun toEncodedConfigAndSalt(): String {
+        val outputString = encodedOutput.toByteArray().toString(charset = Charsets.US_ASCII)
+        return removeHashFromEncoded(outputString)
+    }
 
     private fun removeHashFromEncoded(encoded: String): String {
         return encoded.dropLastWhile { it != '$' }.dropLast(1)
