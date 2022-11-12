@@ -1,0 +1,25 @@
+name: Run Android Linter workflow
+
+on: [workflow_call]
+
+jobs:
+  lint:
+    name: Run Android Linter
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        submodules: 'true'
+
+    - name: Run Gradle
+      uses: gradle/gradle-build-action@v2
+      with:
+        arguments: lint
+
+    - name: Upload HTML Reports
+      uses: actions/upload-artifact@v3
+      if: success() || failure()
+      with:
+        name: Lint-HTML
+        path: '**/build/reports/lint-results-debug.html'
