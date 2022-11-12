@@ -1,0 +1,30 @@
+name: Assemble Debug workflow
+
+on:
+  workflow_call:
+    inputs:
+      assembly_path:
+        default: ''
+        type: string
+
+jobs:
+  build:
+    name: Assemble Debug
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+      with:
+          submodules: 'true'
+
+    - name: Run Gradle
+      uses: gradle/gradle-build-action@v2
+      with:
+        arguments: assembleDebug
+
+    - name: Upload Assembly
+      uses: actions/upload-artifact@v3
+      if: inputs.assembly_path != ''
+      with:
+        name: Assembly
+        path: ${{ inputs.assembly_path }}

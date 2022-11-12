@@ -15,28 +15,7 @@ jobs:
     needs: validate
 
   build:
-    name: Build debug
-    runs-on: ubuntu-latest
+    uses: ./.github/workflows/assembleDebug.yml
     needs: validate
-
-    steps:
-    - uses: actions/checkout@v3
-      with:
-          submodules: 'true'
-
-    - name: Setup Java
-      uses: actions/setup-java@v3
-      with:
-        distribution: 'zulu'
-        java-version: 11
-          
-    - name: Run Gradle
-      uses: gradle/gradle-build-action@v2
-      with:
-        arguments: assembleDebug
-
-    - name: Upload AAR
-      uses: actions/upload-artifact@v3
-      with:
-        name: Library
-        path: ${{ github.workspace }}/lib/build/outputs/aar/lib-debug.aar
+    with:
+      assembly_path: lib/build/outputs/aar/lib-debug.aar
