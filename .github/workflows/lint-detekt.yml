@@ -1,0 +1,40 @@
+name: Run Detekt Linter workflow
+
+on:
+  workflow_call:
+    inputs:
+      upload_sarif:
+        default: false
+        type: boolean
+
+jobs:
+  detekt:
+    name: Run Detekt Linter
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        submodules: 'true'
+
+    - name: Run Gradle
+      uses: gradle/gradle-build-action@v2
+      with:
+        arguments: detekt
+
+    - name: Upload Markdown Report
+      run: cat build/reports/detekt/detekt.md >> $GITHUB_STEP_SUMMARY
+      if: success() || failure()
+
+    - name: Upload HTML Reports
+      uses: actions/upload-artifact@v3
+      if: success() || failure()
+      with:
+        name: Detekt-HTML
+        path: build/reports/detekt/detekt.html
+
+    - name: Upload SARIF Report
+      uses: github/codeql-action/upload-sarif@v2
+      if: inputs.upload_sarif && (success() || failure())
+      with:
+        sarif_file: build/reports/detekt/detekt.sarif

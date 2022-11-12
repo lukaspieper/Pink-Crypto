@@ -7,49 +7,12 @@ jobs:
     uses: ./.github/workflows/validate-gradlew.yml
 
   lint:
-    name: Run Linter
-    runs-on: ubuntu-latest
+    uses: ./.github/workflows/lint.yml
     needs: validate
 
-    steps:
-    - uses: actions/checkout@v3
-      with:
-          submodules: 'true'
-
-    - name: Setup Java
-      uses: actions/setup-java@v3
-      with:
-        distribution: 'zulu'
-        java-version: 11
-
-    - name: Setup Gradle
-      uses: gradle/gradle-build-action@v2
-
-    - name: Run Detekt Linter
-      run: ./gradlew detekt
-
-    - name: Run Android Linter
-      run: ./gradlew lint
-      if: success() || failure()
-
-    - name: Upload Markdown report
-      run: cat build/reports/detekt/detekt.md >> $GITHUB_STEP_SUMMARY
-      if: success() || failure()
-
-    - name: Upload SARIF report
-      uses: github/codeql-action/upload-sarif@v2
-      if: success() || failure()
-      with:
-        sarif_file: build/reports/detekt/detekt.sarif
-
-    - name: Upload reports
-      uses: actions/upload-artifact@v3
-      if: success() || failure()
-      with:
-        name: Reports
-        path: |
-            build/reports
-            lib/build/reports
+  detekt:
+    uses: ./.github/workflows/lint-detekt.yml
+    needs: validate
 
   build:
     name: Build debug
