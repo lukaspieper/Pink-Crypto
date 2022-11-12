@@ -4,81 +4,20 @@ on: [push, pull_request]
 
 jobs:
   validate:
-    name: Validate Gradle Wrapper
-    runs-on: ubuntu-latest
+    uses: lukaspieper/android-actions/.github/workflows/validate-gradlew.yml@main
 
-    steps:
-    - uses: actions/checkout@v3
-    - uses: gradle/wrapper-validation-action@v1
+  detekt:
+    uses: lukaspieper/android-actions/.github/workflows/lint-detekt.yml@main
+    needs: validate
+    with:
+      upload_sarif: true
 
   lint:
-    name: Run Linter
-    runs-on: ubuntu-latest
+    uses: lukaspieper/android-actions/.github/workflows/lint.yml@main
     needs: validate
-
-    steps:
-    - uses: actions/checkout@v3
-      with:
-          submodules: 'true'
-
-    - name: Setup Java
-      uses: actions/setup-java@v3
-      with:
-        distribution: 'zulu'
-        java-version: 11
-
-    - name: Setup Gradle
-      uses: gradle/gradle-build-action@v2
-
-    - name: Run Detekt Linter
-      run: ./gradlew detekt
-
-    - name: Run Android Linter
-      run: ./gradlew lint
-      if: success() || failure()
-
-    - name: Upload Markdown report
-      run: cat build/reports/detekt/detekt.md >> $GITHUB_STEP_SUMMARY
-      if: success() || failure()
-
-    - name: Upload SARIF report
-      uses: github/codeql-action/upload-sarif@v2
-      if: success() || failure()
-      with:
-        sarif_file: build/reports/detekt/detekt.sarif
-
-    - name: Upload reports
-      uses: actions/upload-artifact@v3
-      if: success() || failure()
-      with:
-        name: Reports
-        path: |
-            build/reports
-            lib/build/reports
 
   build:
-    name: Build debug
-    runs-on: ubuntu-latest
+    uses: lukaspieper/android-actions/.github/workflows/assembleDebug.yml@main
     needs: validate
-
-    steps:
-    - uses: actions/checkout@v3
-      with:
-          submodules: 'true'
-
-    - name: Setup Java
-      uses: actions/setup-java@v3
-      with:
-        distribution: 'zulu'
-        java-version: 11
-          
-    - name: Run Gradle
-      uses: gradle/gradle-build-action@v2
-      with:
-        arguments: assembleDebug
-
-    - name: Upload AAR
-      uses: actions/upload-artifact@v3
-      with:
-        name: Library
-        path: ${{ github.workspace }}/lib/build/outputs/aar/lib-debug.aar
+    with:
+      assembly_path: lib/build/outputs/aar/lib-debug.aar
