@@ -10,7 +10,7 @@ android {
 
     defaultConfig {
         minSdk 20
-        targetSdk 31
+        targetSdk 33
         versionCode 3
         versionName "0.3"
 
@@ -31,7 +31,6 @@ android {
     externalNativeBuild {
         cmake {
             path "src/main/cpp/CMakeLists.txt"
-            version "3.22.1"
         }
     }
     compileOptions {
@@ -45,15 +44,15 @@ android {
 }
 
 dependencies {
-    implementation("androidx.annotation:annotation:1.5.0")
-    implementation("com.google.crypto.tink:tink-android:1.7.0")
+    implementation("androidx.annotation:annotation:1.6.0")
+    implementation("com.google.crypto.tink:tink-android:1.9.0")
 
     // Tests
-    androidTestImplementation("androidx.test.ext:junit:1.1.3")
-    androidTestImplementation("androidx.test:runner:1.4.0")
-    androidTestImplementation("androidx.test:rules:1.4.0")
+    androidTestImplementation("androidx.test.ext:junit:1.1.5")
+    androidTestImplementation("androidx.test:runner:1.5.2")
+    androidTestImplementation("androidx.test:rules:1.5.0")
     androidTestImplementation("com.willowtreeapps.assertk:assertk-jvm:0.25")
-    androidTestImplementation("org.json:json:20220924")
+    androidTestImplementation("org.json:json:20230227")
 }
 
 preBuild.doFirst {
