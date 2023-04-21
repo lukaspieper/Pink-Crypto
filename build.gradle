@@ -1,6 +1,6 @@
 buildscript {
     ext {
-        detekt_version = "1.21.0"
+        detekt_version = "1.22.0"
     }
 }
 
