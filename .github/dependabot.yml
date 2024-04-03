@@ -4,11 +4,19 @@
 # https://help.github.com/github/administering-a-repository/configuration-options-for-dependency-updates
 
 version: 2
+# https://github.com/dependabot/dependabot-core/issues/6888
+registries:
+  maven-google:
+    type: maven-repository
+    url: "https://dl.google.com/dl/android/maven2/"
+
 updates:
   - package-ecosystem: "gradle"
     directory: "/"
     schedule:
       interval: "daily"
+    registries: "*"
+
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
