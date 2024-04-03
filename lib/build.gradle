@@ -6,11 +6,11 @@ plugins {
 
 android {
     namespace "de.lukaspieper.crypto.pink"
-    compileSdk 33
+    compileSdk 34
 
     defaultConfig {
         minSdk 20
-        targetSdk 33
+        targetSdk 34
         versionCode 4
         versionName "0.4"
 
@@ -44,7 +44,7 @@ android {
 }
 
 dependencies {
-    implementation("androidx.annotation:annotation:1.6.0")
+    implementation("androidx.annotation:annotation:1.7.1")
     implementation("com.google.crypto.tink:tink-android:1.9.0")
 
     // Tests
@@ -52,7 +52,7 @@ dependencies {
     androidTestImplementation("androidx.test:runner:1.5.2")
     androidTestImplementation("androidx.test:rules:1.5.0")
     androidTestImplementation("com.willowtreeapps.assertk:assertk-jvm:0.25")
-    androidTestImplementation("org.json:json:20230227")
+    androidTestImplementation("org.json:json:20240303")
 }
 
 preBuild.doFirst {
