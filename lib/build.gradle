@@ -44,7 +44,7 @@ android {
 }
 
 dependencies {
-    implementation("androidx.annotation:annotation:1.7.1")
+    implementation("androidx.annotation:annotation:1.8.2")
     implementation("com.google.crypto.tink:tink-android:1.13.0")
 
     // Tests
