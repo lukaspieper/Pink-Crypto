@@ -1,52 +1,90 @@
-# Pink-Crypto
+> [!IMPORTANT]  
+> Truvark will soon be free and open source software (FOSS). The code will be made available in this repository.
 
-The name 'Pink' stands for Password-[Tink](https://github.com/google/tink). It is a Android library
-that extends the popular crypto library build by Google engineers to support password based
-encryption and decryption. It uses the
-[official Argon2 source](https://github.com/P-H-C/phc-winner-argon2) with JNI to derive a key from
-the password.
+---
 
-This library was created for and is an elementary part of my file encryption app Truvark 
-([Play Store](https://play.google.com/store/apps/details?id=de.lukaspieper.truvark)).
+<p align="center">
+  <img src=".idea/icon.svg" height="128px" alt="Truvark logo"/>
+</p>
 
-> **_NOTE:_**  I am NOT a cryptography expert. The Argon2 implementation is using code from
-> [Argon2Kt](https://github.com/lambdapioneer/argon2kt) and the interaction with Tink is based on
-> [this issue](https://github.com/google/tink/issues/347) from their repository.
+## Pitch
 
-## Usage
+Maybe you're wondering why you should give an underdog file encryption app a chance? Especially when this type of app is
+all about trust?
 
-Example for creating a new `KeysetHandle`, encrypting it with a password and finally exporting the
-encrypted Keyset to store it.
+Compared to many other popular alternatives, Truvark...
 
-```kotlin
-// Generate a new KeysetHandle as you know it from Tink
-StreamingAeadConfig.register()
-val aesKeyTemplate = KeyTemplates.get("AES256_GCM_HKDF_4KB")
-val keysetHandle = KeysetHandle.generateNew(aesKeyTemplate)
+- [x] supports multiple vaults on a single device
+- [x] supports deep folder structures (subfolders)
+- [x] decrypts common media files (images, video, audio) in-app on the fly
+- [x] works completely offline, no internet access/permission required
+- [x] runs without dangerous permissions like full storage/media access
+- [x] contains no advertising, telemetry or other user data collection
+- [x] encrypts the database and thumbnails
+- [x] allows biometric unlocking (e.g. fingerprint) without compromising security
 
-// Encrypt it with a password
-val passwordBytes = TODO("Password as ByteArray")
-val encryptedKeyset = keysetHandle.encryptWithPassword(passwordBytes)
+As you can see, there are already plenty of reasons to give Truvark a try today!
 
-// Export the encrypted Keyset
-val encryptedKeysetString = encryptedKeyset.exportAsString()
-```
+<p align="center">
+<a href='https://play.google.com/store/apps/details?id=de.lukaspieper.truvark'>
+<img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png' width="250px"/>
+</a>
+</p>
 
-Example for importing an encrypted Keyset and decrypting it with the password to obtain a 
-`KeysetHandle`.
+## Features in detail
 
-```kotlin
-// Register Tink if not done earlier. Get the encryptedKeysetString and password
-StreamingAeadConfig.register()
-val encryptedKeysetString = TODO("The exported encrypted Keyset String, see above")
-val passwordBytes = TODO("Password as ByteArray")
+### Multiple vaults
 
-// Import the stored String
-val encryptedKeyset = PasswordEncryptedKeyset.importFromString(encryptedKeysetString)
+You can create multiple vaults on your device. Any empty folder can become a vault. All your data remains on the shared
+device storage, which means you can access the encrypted files from a file manager, for example, for backups.
 
-// Decrypt the Keyset
-val keysetHandle = encryptedKeyset.decryptWithPassword(passwordBytes)
+> [!NOTE]
+> Using the device's shared storage is a significant difference compared to alternatives. Some apps don't even encrypt
+> your files, they just move them to the app's internal storage. This is often referred to as "data hiding" rather than
+> encrypting.
 
-// Use the KeysetHandle as you know it from Tink, e.g.
-val streamingAead = keysetHandle.getPrimitive(StreamingAead::class.java)
-```
+### Deep folder structures
+
+Truvark is not an encrypted gallery that just lets you group your images into albums. It is a file encryption app with
+full support for subfolders. You are not limited in how you organize your files.
+
+### View encrypted files
+
+Common file types can be viewed in the application. Currently supported are images, video and audio. Decryption is done
+*on the fly*, which means that the required data remains in memory (RAM) instead of being written to storage. This is
+especially important for long videos that would otherwise not fit in memory. The image viewer supports high resolution
+images and shows more details when zooming in instead of getting pixelated (called *subsampling*).
+
+> [!NOTE]
+> Some popular alternative apps decrypt the entire file to disk before displaying it. This sacrifices performance and
+> may put the file at risk.
+
+### Privacy by default
+
+In short, this app has no Internet permissions. There are no analytics, ads, telemetry, or account requirements. There
+is an option in the settings to enable on-device logging, which is turned off by default.
+
+### Security by design
+
+In cryptography, it is enough to get a single parameter wrong to make software insecure. To reduce this risk, popular
+open source libraries are used.
+
+One of them is an encryption library built by Google engineers and used in Google Pay
+called [Tink](https://github.com/tink-crypto/tink-java). It was designed with the goal of reducing insecure software due
+to "configuration" errors. They feature this prominently:
+
+> *Tink provides secure APIs that are easy to use correctly and hard(er) to misuse.*
+
+In addition, Argon2(id) is used for key derivation. It won the
+[Password Hashing Competition](https://en.wikipedia.org/wiki/Password_Hashing_Competition)
+in 2015 and is one of the best (if not the best) algorithm for this task.
+
+Finally, Realm was chosen for the database because it supports database encryption out of the box.
+
+> [!NOTE]
+> Many other vault apps use an unencrypted database!
+
+---
+
+> [!IMPORTANT]  
+> Truvark will soon be free and open source software (FOSS). The code will be made available in this repository.
