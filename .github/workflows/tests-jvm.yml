@@ -1,0 +1,42 @@
+# SPDX-FileCopyrightText: 2022 Lukas Pieper
+#
+# SPDX-License-Identifier: GPL-3.0-or-later
+
+name: Run JVM Tests workflow
+
+on: [workflow_call]
+
+jobs:
+  jvmtests:
+    name: Run JVM Tests
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Set up JDK 17
+      uses: actions/setup-java@v4
+      with:
+        distribution: 'temurin'
+        java-version: 17
+
+    - name: Setup Gradle
+      uses: gradle/actions/setup-gradle@v4
+
+    - name: Run JVM Tests
+      run: ./gradlew common:test
+
+    - name: Upload Markdown Report
+      run: |
+        echo "<details>" >> $GITHUB_STEP_SUMMARY
+        echo "<summary>Show Report</summary>" >> $GITHUB_STEP_SUMMARY
+        sed -n '/<body>/,/<\/body>/p' common/build/reports/tests/test/index.html >> $GITHUB_STEP_SUMMARY
+        echo "</details>" >> $GITHUB_STEP_SUMMARY
+      if: success() || failure()
+
+    - name: Upload HTML Reports
+      uses: actions/upload-artifact@v4
+      if: success() || failure()
+      with:
+        name: Tests-HTML
+        path: common/build/reports/tests

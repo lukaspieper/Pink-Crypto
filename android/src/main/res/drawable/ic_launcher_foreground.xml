@@ -1,0 +1,39 @@
+<!--
+SPDX-FileCopyrightText: 2022 Lukas Pieper
+
+SPDX-License-Identifier: GPL-3.0-or-later
+-->
+
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+  <group android:scaleX="0.4783347"
+      android:scaleY="0.4783347"
+      android:translateX="21.6"
+      android:translateY="21.6">
+    <path
+        android:pathData="m102.21,50.36l-29.09,0L73.11,115.58L62.29,115.58L62.29,50.36L33.19,50.36l0,-8.74l69.01,0z"
+        android:fillColor="#4caf50"/>
+    <path
+        android:pathData="M62.29,19.84H73.11V34.11H62.29Z"
+        android:strokeWidth="0.398738"
+        android:fillColor="#4caf50"/>
+    <path
+        android:pathData="M91.39,19.84H102.21V33.62H91.39Z"
+        android:strokeWidth="0.391787"
+        android:fillColor="#4caf50"/>
+    <path
+        android:pathData="m33.19,19.84h10.82v13.8H33.19Z"
+        android:strokeWidth="0.392137"
+        android:fillColor="#4caf50"/>
+    <path
+        android:pathData="m33.19,30.66h69.03v6.85H33.19Z"
+        android:strokeWidth="0.590726"
+        android:fillColor="#4caf50"/>
+    <path
+        android:pathData="M102.21,115.62 L68.79,96.11l0,-8.02l33.42,-19.52l0,10.09l-23.39,13.47 23.39,13.4z"
+        android:fillColor="#4caf50"/>
+  </group>
+</vector>

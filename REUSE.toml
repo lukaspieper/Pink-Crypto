@@ -1,0 +1,19 @@
+# SPDX-FileCopyrightText: 2025 Lukas Pieper
+#
+# SPDX-License-Identifier: GPL-3.0-or-later
+
+version = 1
+
+[[annotations]]
+path = [
+    "android/src/main/**/ic_launcher*.png",
+    ".idea/**",
+    ".detekt/detekt-baseline.xml"
+]
+SPDX-FileCopyrightText = "2022 Lukas Pieper"
+SPDX-License-Identifier = "GPL-3.0-or-later"
+
+[[annotations]]
+path = "gradle/wrapper/gradle-wrapper.jar"
+SPDX-FileCopyrightText = "2015-2021 the original authors"
+SPDX-License-Identifier = "Apache-2.0"

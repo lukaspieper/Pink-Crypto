@@ -1,0 +1,27 @@
+<?xml version="1.0" ?>
+<SmellBaseline>
+  <ManuallySuppressedIssues></ManuallySuppressedIssues>
+  <CurrentIssues>
+    <ID>Indentation:BrowserPage.kt$ </ID>
+    <ID>MagicNumber:AndroidThumbnailProvider.kt$AndroidThumbnailProvider$0.07</ID>
+    <ID>MagicNumber:Argon2.kt$Argon2$3</ID>
+    <ID>MagicNumber:Argon2.kt$Argon2$4</ID>
+    <ID>MagicNumber:DatabaseFileSynchronization.kt$DatabaseFileSynchronization$2000</ID>
+    <ID>MagicNumber:Extensions.kt$0xFF</ID>
+    <ID>MagicNumber:Extensions.kt$16</ID>
+    <ID>MaxLineLength:CipherEntityGrid.kt$if (isSelected) Icons.Default.CheckCircle else Icons.AutoMirrored.Default.InsertDriveFile</ID>
+    <ID>MaximumLineLength:CipherEntityGrid.kt$ </ID>
+    <ID>MayBeConst:Vault.kt$Vault.Companion$internal val realmSchemaVersion = 2L</ID>
+    <ID>ModifierMissing:MainView.kt$DirectorySelection</ID>
+    <ID>ModifierMissing:MainView.kt$MainView</ID>
+    <ID>ModifierMissing:MainView.kt$PasswordField</ID>
+    <ID>ModifierMissing:MainView.kt$VaultCreation</ID>
+    <ID>ModifierMissing:MainView.kt$VaultUnlocking</ID>
+    <ID>ModifierNotUsedAtRoot:VideoContentView.kt$modifier = modifier</ID>
+    <ID>ParameterNaming:PasswordField.kt$onKeyboardDone</ID>
+    <ID>UnusedPrivateProperty:SchedulerFake.kt$SchedulerFake$i</ID>
+    <ID>ViewModelForwarding:MainView.kt$DirectorySelection(viewModel)</ID>
+    <ID>ViewModelForwarding:MainView.kt$VaultCreation(viewModel)</ID>
+    <ID>ViewModelForwarding:MainView.kt$VaultUnlocking(viewModel)</ID>
+  </CurrentIssues>
+</SmellBaseline>

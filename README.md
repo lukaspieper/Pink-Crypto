@@ -1,7 +1,8 @@
-> [!IMPORTANT]  
-> Truvark will soon be free and open source software (FOSS). The code will be made available in this repository.
+<!--
+SPDX-FileCopyrightText: 2022 Lukas Pieper
 
----
+SPDX-License-Identifier: GPL-3.0-or-later
+-->
 
 <p align="center">
   <img src=".idea/icon.svg" height="128px" alt="Truvark logo"/>
@@ -84,7 +85,6 @@ Finally, Realm was chosen for the database because it supports database encrypti
 > [!NOTE]
 > Many other vault apps use an unencrypted database!
 
----
+## License
 
-> [!IMPORTANT]  
-> Truvark will soon be free and open source software (FOSS). The code will be made available in this repository.
+This app is released under [*GPL-3.0-or-later*](LICENSES/GPL-3.0-or-later.txt).

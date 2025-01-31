@@ -1,0 +1,17 @@
+<!--
+SPDX-FileCopyrightText: 2022 Lukas Pieper
+
+SPDX-License-Identifier: GPL-3.0-or-later
+-->
+
+<resources>
+
+    <style name="AppTheme.Starting" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">@color/background_light</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/ic_launcher_foreground</item>
+
+        <item name="postSplashScreenTheme">@style/AppTheme</item>  # Required.
+    </style>
+
+    <style name="AppTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar" />
+</resources>

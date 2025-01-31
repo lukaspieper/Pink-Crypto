@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+SPDX-FileCopyrightText: 2022 Lukas Pieper
+
+SPDX-License-Identifier: GPL-3.0-or-later
+-->
+
+<resources>
+    <string name="enter_password">Passwort eingeben</string>
+    <string name="incorrect_password">Das Passwort ist falsch.</string>
+    <string name="choose_vault_root_dir">Ordner auswählen</string>
+    <string name="storage_location_text">Um einen neuen Tresor zu erstellen, wähle einen leeren Ordner auf Deinem Gerät oder einer SD-Karte. Wenn Du einen bestehenden Tresor öffnen möchtest, wähle den bestehenden Ordner aus.</string>
+    <string name="set_password">Passwort festlegen</string>
+    <string name="setup_password_text">Die Verschlüsselung hängt vom Passwort ab. Ohne Passwort gibt es keine Möglichkeit, den Zugang zu den Daten wiederherzustellen.</string>
+    <string name="repeat_password">Passwort wiederholen</string>
+    <string name="inputs_do_not_match">Die Eingaben stimmen nicht überein.</string>
+    <string name="password_length">Das Passwort muss mindestens %d Zeichen lang sein.</string>
+    <string name="foreground_service">Vordergrunddienste</string>
+    <string name="encrypting_files">Verschlüssele Dateien</string>
+    <string name="decrypting_files">Entschlüssele Dateien</string>
+    <string name="deleting_files">Lösche Dateien</string>
+    <string name="cancel">Abbrechen</string>
+    <string name="delete">Löschen</string>
+    <string name="file_not_supported_info">Dieses Dateiformat wird aktuell noch nicht unterstützt. Bei Bedarf kannst Du die Datei einfach wieder entschlüsseln.</string>
+    <string name="create_or_open_vault">Tresor erstellen oder öffnen</string>
+    <string name="app">App</string>
+    <string name="logging">Logging (logcat)</string>
+    <string name="settings">Einstellungen</string>
+    <string name="vault">Tresor</string>
+    <string name="biometric_unlocking">Biometrisches Entsperren</string>
+    <string name="setup_biometrics">Biometrie einrichten</string>
+    <string name="biometric_prompt_setup_description">Authentifizieren, um die biometrische Entsperrung für diesen Tresor einzurichten.</string>
+    <string name="cancel_setup">Einrichtung abbrechen</string>
+    <string name="confirm_vaults_password">Passwort des Tresors bestätigen</string>
+    <string name="setup_biometrics_description">Nur ein Tresor kann biometrisch entsperrt werden. Startest Du die biometrische Einrichtung für einen anderen Tresor, wird sie aus dem vorherigen Tresor automatisch entfernt.</string>
+    <string name="vault_using_biometric_unlocking">Dieser Tresor ist für das biometrische Entsperren konfiguriert.</string>
+    <string name="create_new_folder">Neuen Ordner erstellen</string>
+    <string name="folder_name">Ordnername</string>
+    <string name="sync_database">Synchronisiere Datenbank</string>
+    <string name="no_existing_vault_info">Der zuletzt verwendete Tresor konnte nicht gefunden werden. Öffne einen vorhandenen Tresor oder erstelle einen neuen.</string>
+    <string name="biometric_unlocking_failed">Biometrisches Entsperren fehlgeschlagen! Bitte Passwort verwenden.</string>
+    <string name="confirm_deletion">Löschen bestätigen</string>
+    <string name="delete_warning">Du bist dabei die ausgewählten Dateien und Ordner zu löschen. Dies kann nicht rückgängig gemacht werden!</string>
+    <string name="encrypted_file_not_found">Verschlüsselte Datei nicht gefunden!</string>
+    <string name="privacy_policy">Datenschutzerklärung</string>
+    <string name="notification_permission_description">Benachrichtigungen werden benötigt, um im Hintergrund zu ver- und entschlüsseln, sowie den Fortschritt anzuzeigen. Bitte lass die Berechtigung zu, um diese App zu verwenden. Es werden nur Benachrichtigungen mit niedriger Priorität verwendet.</string>
+    <string name="grant_permission">Berechtigung zulassen</string>
+    <string name="open_app_settings">App-Einstellungen öffnen</string>
+    <string name="fit_images_to_match_screen">Bilder an Display anpassen</string>
+    <string name="create_vault">Tresor erstellen</string>
+    <string name="create" >Erstellen</string>
+    <string name="error_unlocking_vault">Der Tresor konnte nicht entsperrt werden.</string>
+    <string name="decrypted_files">Entschlüsselung abgeschlossen</string>
+    <string name="open_directory">Ordner öffnen</string>
+    <string name="relocating_files">Verschiebe Dateien</string>
+    <string name="move_here">Verschieben</string>
+    <string name="note_relocate_files_to_root">Beachte, dass Dateien nicht in das Wurzelverzeichnis verschoben werden können.</string>
+    <string name="folders_and_files_selected">%1$s Ordner und %2$s Datei(en) ausgewählt</string>
+    <string name="vault_name">Tresorname</string>
+    <string name="vault_name_change_hint">Beachte, dass der Tresorname nicht verschlüsselt ist, um bereits vor dem Entsperren angezeigt werden zu können.</string>
+    <string name="settings_description_vault">Tresorname, biometrisches Entsperren</string>
+    <string name="settings_description_app">Bildskalierung, Protokollierung</string>
+    <string name="settings_licensing">Lizenzen und Copyright</string>
+    <string name="rename_folder">Ordner umbenennen</string>
+    <string name="rename">Umbenennen</string>
+    <string name="delete_source_files">Quelldateien löschen</string>
+    <string name="encrypt_files">Dateien verschlüsseln</string>
+    <string name="select">Auswählen</string>
+    <string name="source_code">Quellcode</string>
+</resources>

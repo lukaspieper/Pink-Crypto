@@ -1,0 +1,80 @@
+# SPDX-FileCopyrightText: 2023 Lukas Pieper
+#
+# SPDX-License-Identifier: GPL-3.0-or-later
+
+[versions]
+kotlin = "2.0.21"
+kotlin-serializsation-json = "1.7.3"
+kotlin-coroutines = "1.10.1"
+hilt-dagger = "2.55"
+hilt-androidx = "1.2.0"
+realm-kotlin = "3.0.0"
+coil = "2.7.0"
+detekt = "1.23.7"
+accompanist = "0.37.0"
+lifecycle = "2.8.7"
+adaptive = "1.1.0-beta01"
+
+[libraries]
+android-core-ktx = { module = "androidx.core:core-ktx", version = "1.15.0" }
+android-core-splashscreen = { module = "androidx.core:core-splashscreen", version = "1.0.1" }
+android-biometric-ktx = { module = "androidx.biometric:biometric-ktx", version = "1.4.0-alpha02" }
+android-compose-bom = { module = "androidx.compose:compose-bom", version = "2025.01.01" }
+android-compose-material-icons-extended = { group = "androidx.compose.material", name = "material-icons-extended" }
+android-compose-adaptive = { group = "androidx.compose.material3.adaptive", name = "adaptive", version.ref = "adaptive" }
+android-compose-adaptive-layout = { group = "androidx.compose.material3.adaptive", name = "adaptive-layout", version.ref = "adaptive" }
+android-compose-adaptive-navigation = { group = "androidx.compose.material3.adaptive", name = "adaptive-navigation", version.ref = "adaptive" }
+android-ui = { group = "androidx.compose.ui", name = "ui" }
+android-ui-graphics = { group = "androidx.compose.ui", name = "ui-graphics" }
+android-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
+android-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
+android-material3 = { group = "androidx.compose.material3", name = "material3" }
+android-activity-compose = { module = "androidx.activity:activity-compose", version = "1.10.0" }
+android-navigation-compose = { module = "androidx.navigation:navigation-compose", version = "2.8.6" }
+android-lifecycle-process = { module = "androidx.lifecycle:lifecycle-process", version.ref = "lifecycle" }
+android-lifecycle-runtime-compose = { group = "androidx.lifecycle", name = "lifecycle-runtime-compose", version.ref = "lifecycle" }
+android-workmanager = { module = "androidx.work:work-runtime", version = "2.10.0" }
+android-datastore-preferences = { module = "androidx.datastore:datastore-preferences", version = "1.1.2" }
+android-hilt-workmanager = { module = "androidx.hilt:hilt-work", version.ref = "hilt-androidx" }
+android-hilt-navigation-compose = { module = "androidx.hilt:hilt-navigation-compose", version.ref = "hilt-androidx" }
+android-hilt-compiler = { module = "androidx.hilt:hilt-compiler", version.ref = "hilt-androidx" }
+dagger-hilt = { module = "com.google.dagger:hilt-android", version.ref = "hilt-dagger" }
+dagger-hilt-compiler = { module = "com.google.dagger:hilt-compiler", version.ref = "hilt-dagger" }
+kotlin-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlin-coroutines" }
+kotlin-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "kotlin-coroutines" }
+kotlin-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlin-serializsation-json" }
+realm-kotlin = { module = "io.realm.kotlin:library-base", version.ref = "realm-kotlin" }
+tink-android = { module = "com.google.crypto.tink:tink-android", version = "1.16.0" }
+argon2-android = { module = "com.lambdapioneer.argon2kt:argon2kt", version = "1.6.0" }
+argon2-jvm = { module = "de.mkammerer:argon2-jvm", version = "2.11" }
+google-material = { module = "com.google.android.material:material", version = "1.12.0" }
+google-accompanist-permissions = { module = "com.google.accompanist:accompanist-permissions", version.ref = "accompanist" }
+google-accompanist-drawablepainter = { module = "com.google.accompanist:accompanist-drawablepainter", version.ref = "accompanist" }
+google-oss-licenses = { module = "com.google.android.gms:oss-licenses-plugin", version = "0.10.6" }
+coil-compose = { module = "io.coil-kt:coil-compose-base", version.ref = "coil" }
+coil-gif = { module = "io.coil-kt:coil-gif", version.ref = "coil" }
+coil-svg = { module = "io.coil-kt:coil-svg", version.ref = "coil" }
+coil-video = { module = "io.coil-kt:coil-video", version.ref = "coil" }
+telephoto = { module = "me.saket.telephoto:zoomable-image-coil", version = "0.14.0" }
+
+junit-jupiter = { module = "org.junit.jupiter:junit-jupiter", version = "5.11.4" }
+json = { module = "org.json:json", version = "20250107" }
+
+detekt-rules-formatting = { module = "io.gitlab.arturbosch.detekt:detekt-formatting", version.ref = "detekt" }
+detekt-rules-compose = { module = "io.nlopez.compose.rules:detekt", version = "0.4.22" }
+
+[bundles]
+coil = ["coil-compose", "coil-gif", "coil-svg", "coil-video"]
+
+[plugins]
+android-gradle = { id = "com.android.application", version = "8.8.0" }
+android-hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt-dagger" }
+kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+kotlin-kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlin" }
+kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
+kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+jetbrains-compose = { id = "org.jetbrains.compose", version = "1.7.3" }
+compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
+realm-kotlin = { id = "io.realm.kotlin", version.ref = "realm-kotlin" }
+
+detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt" }

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+SPDX-FileCopyrightText: 2022 Lukas Pieper
+
+SPDX-License-Identifier: GPL-3.0-or-later
+-->
+
+<resources>
+    <!-- Light Theme-->
+    <color name="background_light">#fcfdf6</color>
+
+    <!-- Dark Theme-->
+    <color name="background_dark">#1a1c19</color>
+</resources>

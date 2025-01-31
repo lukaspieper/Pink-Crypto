@@ -1,0 +1,37 @@
+# SPDX-FileCopyrightText: 2022 Lukas Pieper
+#
+# SPDX-License-Identifier: GPL-3.0-or-later
+
+name: continuous
+
+on:
+  push:
+    branches-ignore:
+      - 'dependabot/**'
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  detekt:
+    uses: lukaspieper/android-actions/.github/workflows/lint-detekt.yml@main
+
+  lint:
+    uses: lukaspieper/android-actions/.github/workflows/lint.yml@main
+
+  build:
+    uses: lukaspieper/android-actions/.github/workflows/assembleDebug.yml@main
+
+  jvmtests:
+    uses: ./.github/workflows/tests-jvm.yml
+
+  licensing:
+    name: Run License Linter
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Lint licensing
+        uses: fsfe/reuse-action@v5

@@ -1,0 +1,115 @@
+# SPDX-FileCopyrightText: 2022 Lukas Pieper
+#
+# SPDX-License-Identifier: GPL-3.0-or-later
+
+output-reports:
+  active: true
+  exclude:
+    - 'TxtOutputReport'
+    - 'XmlOutputReport'
+
+complexity:
+  # Missing ignoreAnnotated for LongMethod and CyclomaticComplexMethod to ignore Composable functions
+  CyclomaticComplexMethod:
+    threshold: 30
+  LongMethod:
+    threshold : 300
+  LongParameterList:
+    functionThreshold: 10
+    ignoreAnnotated: [ 'Composable' ]
+  TooManyFunctions:
+    active: false
+
+exceptions:
+  TooGenericExceptionCaught:
+    active: false
+
+formatting:
+  MaximumLineLength:
+    excludes: [ '**/test/**', '**/androidTest/**', '**/commonTest/**', '**/jvmTest/**', '**/jsTest/**', '**/iosTest/**' ]
+  NoWildcardImports:
+    active: false
+
+naming:
+  MatchingDeclarationName:
+    excludes: [ '**/ui/controls/**' ]
+  FunctionNaming:
+    ignoreAnnotated: [ 'Composable' ]
+
+style:
+  ForbiddenComment:
+    active: false
+  MagicNumber:
+    excludes: [ '**/ui/**', '**.kts', '**/test/**', '**/androidTest/**', '**/commonTest/**', '**/jvmTest/**', '**/jsTest/**', '**/iosTest/**' ]
+  MaxLineLength:
+    excludes: [ '**/test/**', '**/androidTest/**', '**/commonTest/**', '**/jvmTest/**', '**/jsTest/**', '**/iosTest/**' ]
+  UnnecessaryAbstractClass:
+    excludes: [ '**/test/**', '**/androidTest/**', '**/commonTest/**', '**/jvmTest/**', '**/jsTest/**', '**/iosTest/**' ]
+  WildcardImport:
+    active: false
+  ReturnCount:
+    max: 3
+  UnusedPrivateMember:
+    ignoreAnnotated:
+      - 'Preview'
+      - 'PagePreviews'
+      - 'ElementPreviews'
+
+Compose:
+  ComposableAnnotationNaming:
+    active: true
+  CompositionLocalAllowlist:
+    active: false
+    # allowedCompositionLocals: LocalSomething,LocalSomethingElse
+  CompositionLocalNaming:
+    active: true
+  ContentEmitterReturningValues:
+    active: true
+    # You can optionally add your own composables here
+    # contentEmitters: MyComposable,MyOtherComposable
+  DefaultsVisibility:
+    active: true
+  ModifierClickableOrder:
+    active: true
+  ModifierComposable:
+    active: true
+  ModifierMissing:
+    active: true
+  ModifierNaming:
+    active: true
+  ModifierNotUsedAtRoot:
+    active: true
+    # You can optionally add your own composables here
+    # contentEmitters: MyComposable,MyOtherComposable
+  ModifierReused:
+    active: true
+  ModifierWithoutDefault:
+    active: true
+  MultipleEmitters:
+    active: false
+    # You can optionally add your own composables here
+    # contentEmitters: MyComposable,MyOtherComposable
+  MutableParams:
+    active: false
+  ComposableNaming:
+    active: true
+    # You can optionally disable the checks in this rule for regex matches against the composable name (e.g. molecule presenters)
+    # allowedComposableFunctionNames: .*Presenter,.*MoleculePresenter
+  ComposableParamOrder:
+    active: true
+  PreviewAnnotationNaming:
+    active: false
+  PreviewPublic:
+    active: true
+  RememberMissing:
+    active: true
+  RememberContentMissing:
+    active: true
+  UnstableCollections:
+    active: false
+  ViewModelForwarding:
+    active: true
+  ViewModelInjection:
+    active: true
+    # You can optionally add your own ViewModel factories here
+    # viewModelFactories: hiltViewModel,potatoViewModel
